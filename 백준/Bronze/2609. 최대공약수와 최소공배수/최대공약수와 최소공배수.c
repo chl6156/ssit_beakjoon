@@ -16,11 +16,7 @@ int main(void){
     
 
     // 최소 공배수
-    for (int i = a*b; i >= 1; i--)
-    {
-        if(i%a==0 && i%b==0) min = i;
-    }
-    printf("%d", min);
+    printf("%d", (a*b)/max);
 
     return 0;
 }
