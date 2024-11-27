@@ -1,29 +1,23 @@
-# 필랜드롬 진법
+def main():
+    X = int(input())
 
-X = int(input())
-p = [0]*32
+    # 첫 번째 루프: X를 b진법으로 변환하여 팰린드롬인지 검사
+    for i in range(2, int(X**0.5) + 1):
+        p = []  # 동적으로 진법 변환 값을 저장할 리스트
+        k = X
+        while k > 0:
+            p.append(k % i)
+            k //= i
 
-# 첫 번째 루프: X를 b진법으로 변환하여 팰린드롬인지 검사
-for i in range(2, int(X**0.5) + 1):
-    l = 0
-    k = X
-    while k > 0:
-        p[l] = k % i
-        k //= i
-        l += 1
+        # 팰린드롬 확인
+        if p == p[::-1] and len(p) > 1:  # 리스트를 뒤집어서 확인
+            print(i)
 
-    j, k = 0, l - 1
-    while j < k:
-        if p[j] != p[k]:
-            break
-        j += 1
-        k -= 1
+    # 두 번째 루프: temp * b + b = X 조건 확인
+    for i in range(int(X**0.5), 0, -1):
+        if (X - i) % i == 0 and (X - i) // i > i:
+            print((X - i) // i)
 
-    if j >= k and l > 1:
-        print(i)
 
-# 두 번째 루프: temp * b + b = X 조건 확인
-for i in range(int(X**0.5), 0, -1):
-    if (X - i) % i == 0 and (X - i) // i > i:
-        print((X - i) // i)
-
+if __name__ == "__main__":
+    main()
